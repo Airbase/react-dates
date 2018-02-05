@@ -788,6 +788,8 @@ export default class DayPicker extends React.Component {
       isFocused,
       isYearsEnabled,
       phrases,
+      navNext,
+      navPrev,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -895,6 +897,8 @@ export default class DayPicker extends React.Component {
                 onYearChange={this.onYearChange}
                 renderMonth={renderMonth}
                 renderDay={renderDay}
+                navNext={navNext}
+                navPrev={navPrev}
                 onMonthTransitionEnd={this.updateStateAfterMonthTransition}
                 monthFormat={monthFormat}
                 daySize={daySize}
