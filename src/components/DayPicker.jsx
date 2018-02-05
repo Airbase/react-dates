@@ -901,6 +901,7 @@ export default class DayPicker extends React.Component {
                 isFocused={shouldFocusDate}
                 focusedDate={focusedDate}
                 phrases={phrases}
+                isYearsEnabled={isYearsEnabled}
               />
               {verticalScrollable && !isYearsEnabled && this.renderNavigation()}
             </div>

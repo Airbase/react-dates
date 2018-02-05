@@ -23,7 +23,7 @@ const TestInput = props => (
 
 storiesOf('SingleDatePicker (SDP)', module)
   .addWithInfo('default', () => (
-    <SingleDatePickerWrapper />
+    <SingleDatePickerWrapper isYearsEnabled />
   ))
   .addWithInfo('as part of a form', () => (
     <div>
