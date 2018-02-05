@@ -44,6 +44,7 @@ const propTypes = forbidExtraProps({
   onSelectYear: PropTypes.func,
   navPrev: PropTypes.node,
   navNext: PropTypes.node,
+  isYearsEnabled: PropTypes.bool,
 
   focusedDate: momentPropTypes.momentObj, // indicates focusable day
   isFocused: PropTypes.bool, // indicates whether or not to move focus to focusable day
