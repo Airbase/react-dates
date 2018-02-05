@@ -49,20 +49,20 @@ export default class MonthSelector extends React.Component {
             <LeftArrow />
             }
           </button>
+          <span className="Month--title">{currentMonth}</span>
           <button onClick={() => onSelectMonth(date, date.get('month') + 1)}>
             {navNext ? navNext : 
             <RightArrow />
             }
           </button>
-          <span className="Month--title">{currentMonth}</span>
         </div>
         <div className="Year">
-          <span className="Year--title">{currentYear}</span>
           <button onClick={() => onSelectYear(date, date.get('year') - 1)}>
           {navPrev ? navPrev : 
             <LeftArrow />
           }
           </button>
+          <span className="Year--title">{currentYear}</span>
           <button onClick={() => onSelectYear(date, date.get('year') + 1)}>
           {navNext ? navNext : 
             <RightArrow />
