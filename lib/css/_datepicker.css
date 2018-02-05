@@ -639,6 +639,45 @@
     width: 14px;
     vertical-align: middle; }
 
+.MonthYearSwitch {
+  height: 21px; }
+  .MonthYearSwitch button {
+    border: 1px solid #dce0e0;
+    background-color: #fff;
+    color: #757575;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 3px 6px;
+    vertical-align: middle;
+    z-index: 2; }
+    .MonthYearSwitch button:focus, .MonthYearSwitch button:hover {
+      border: 1px solid #c4c4c4; }
+    .MonthYearSwitch button:active {
+      background: #f2f2f2; }
+    .MonthYearSwitch button svg {
+      height: 13px;
+      width: 13px;
+      fill: #82888a; }
+    .MonthYearSwitch button + button {
+      margin-left: 3px; }
+  .MonthYearSwitch .Month,
+  .MonthYearSwitch .Year {
+    display: inline-block; }
+  .MonthYearSwitch .Month--title,
+  .MonthYearSwitch .Year--title {
+    font-size: 14px;
+    font-weight: 500; }
+  .MonthYearSwitch .Month {
+    text-align: left;
+    width: 60%; }
+    .MonthYearSwitch .Month .Month--title {
+      margin-left: 10px; }
+  .MonthYearSwitch .Year {
+    text-align: right;
+    width: 40%; }
+    .MonthYearSwitch .Year .Year--title {
+      margin-right: 10px; }
+
 .SingleDatePicker {
   position: relative;
   display: inline-block; }
