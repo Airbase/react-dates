@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shallowCompare from 'react-addons-shallow-compare';
 import momentPropTypes from 'react-moment-proptypes';
+
 import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import moment from 'moment';
 import cx from 'classnames';
@@ -12,6 +13,7 @@ import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CalendarDay from './CalendarDay';
+import MonthYearSwitch from './MonthYearSwitch';
 
 import getCalendarMonthWeeks from '../utils/getCalendarMonthWeeks';
 import isSameDay from '../utils/isSameDay';
@@ -38,6 +40,10 @@ const propTypes = forbidExtraProps({
   onDayMouseLeave: PropTypes.func,
   renderMonth: PropTypes.func,
   renderDay: PropTypes.func,
+  onSelectMonth: PropTypes.func,
+  onSelectYear: PropTypes.func,
+  navPrev: PropTypes.node,
+  navNext: PropTypes.node,
 
   focusedDate: momentPropTypes.momentObj, // indicates focusable day
   isFocused: PropTypes.bool, // indicates whether or not to move focus to focusable day
@@ -57,11 +63,16 @@ const defaultProps = {
   onDayClick() {},
   onDayMouseEnter() {},
   onDayMouseLeave() {},
+  onSelectMonth() {},
+  onSelectYear() {},
   renderMonth: null,
   renderDay: null,
 
   focusedDate: null,
   isFocused: false,
+  isYearsEnabled: false,
+  navPrev: null,
+  navNext: null,
 
   // i18n
   monthFormat: 'MMMM YYYY', // english locale
@@ -105,6 +116,11 @@ export default class CalendarMonth extends React.Component {
       focusedDate,
       isFocused,
       phrases,
+      onSelectMonth,
+      onSelectYear,
+      isYearsEnabled,
+      navPrev,
+      navNext,
     } = this.props;
 
     const { weeks } = this.state;
@@ -120,7 +136,15 @@ export default class CalendarMonth extends React.Component {
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
           <caption className="CalendarMonth__caption js-CalendarMonth__caption">
-            <strong>{monthTitle}</strong>
+           { isYearsEnabled ?
+               <MonthYearSwitch
+                 date={month}
+                 onSelectMonth={onSelectMonth}
+                 onSelectYear={onSelectYear}
+                 navNext={navNext}
+                 navPrev={navPrev}
+               />
+               : <strong>{monthTitle}</strong> }
           </caption>
 
           <tbody className="js-CalendarMonth__grid">
