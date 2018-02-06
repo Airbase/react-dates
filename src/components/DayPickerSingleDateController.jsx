@@ -373,7 +373,7 @@ export default class DayPickerSingleDateController extends React.Component {
 
   onYearChange(newMonth) {
     const { enableOutsideDays } = this.props;
-    const { currentMonth } = this.state;
+    const { currentMonth, visibleDays } = this.state;
     let monthsToAdd = 1
     if (currentMonth.isAfter(newMonth)) {
       monthsToAdd = -1
