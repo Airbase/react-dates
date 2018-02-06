@@ -157,6 +157,9 @@ export default class DayPickerSingleDateController extends React.Component {
     this.onPrevMonthClick = this.onPrevMonthClick.bind(this);
     this.onNextMonthClick = this.onNextMonthClick.bind(this);
 
+    this.onMonthChange = this.onMonthChange.bind(this);
+    this.onYearChange = this.onYearChange.bind(this);
+
     this.getFirstFocusableDay = this.getFirstFocusableDay.bind(this);
   }
 
@@ -357,6 +360,40 @@ export default class DayPickerSingleDateController extends React.Component {
     });
 
     onNextMonthClick();
+  }
+
+  onMonthChange(newMonth) {
+    const { currentMonth } = this.state;
+    if (currentMonth.isAfter(newMonth)) {
+      this.onPrevMonthClick();
+    } else {
+      this.onNextMonthClick();
+    }
+  }
+
+  onYearChange(newMonth) {
+    const { enableOutsideDays } = this.props;
+    const { currentMonth } = this.state;
+    let monthsToAdd = 1
+    if (currentMonth.isAfter(newMonth)) {
+      monthsToAdd = -1
+    }
+
+    const newVisibleDays = {};
+    Object.keys(visibleDays).sort().slice(1).forEach((month) => {
+      newVisibleDays[month] = visibleDays[month];
+    });
+
+    const nextMonth = newMonth.clone().add(monthsToAdd, 'month');
+    const nextMonthVisibleDays = getVisibleDays(nextMonth, 1, enableOutsideDays);
+
+    this.setState({
+      currentMonth: newMonth,
+      visibleDays: {
+        ...newVisibleDays,
+        ...this.getModifiers(nextMonthVisibleDays),
+      },
+    });
   }
 
 
@@ -584,6 +621,8 @@ export default class DayPickerSingleDateController extends React.Component {
         daySize={daySize}
         isRTL={isRTL}
         isYearsEnabled={isYearsEnabled}
+        onMonthChange={this.onMonthChange}
+        onYearChange={this.onYearChange}
       />
     );
   }
