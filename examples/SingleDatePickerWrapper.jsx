@@ -69,6 +69,7 @@ const defaultProps = {
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   phrases: SingleDatePickerPhrases,
+  isYearsEnabled: false
 };
 
 class SingleDatePickerWrapper extends React.Component {

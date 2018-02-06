@@ -69,6 +69,7 @@ const defaultProps = {
   // navigation related props
   navPrev: null,
   navNext: null,
+  isYearsEnabled: false,
 
   onPrevMonthClick() {},
   onNextMonthClick() {},
@@ -324,6 +325,7 @@ export default class SingleDatePicker extends React.Component {
       isOutsideRange,
       isDayBlocked,
       isDayHighlighted,
+      isYearsEnabled
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused } = this.state;
 
@@ -363,6 +365,7 @@ export default class SingleDatePicker extends React.Component {
           isDayBlocked={isDayBlocked}
           isDayHighlighted={isDayHighlighted}
           firstDayOfWeek={firstDayOfWeek}
+          isYearsEnabled={isYearsEnabled}
         />
 
         {withFullScreenPortal && (
