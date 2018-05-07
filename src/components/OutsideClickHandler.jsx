@@ -36,9 +36,11 @@ export default class OutsideClickHandler extends React.Component {
   }
 
   onOutsideClick(e) {
-    const isDescendantOfRoot = this.childNode.contains(e.target);
-    if (!isDescendantOfRoot) {
-      this.props.onOutsideClick(e);
+    if (this.childNode) {
+      const isDescendantOfRoot = this.childNode.contains(e.target);
+      if (!isDescendantOfRoot) {
+        this.props.onOutsideClick(e);
+      }
     }
   }
 
