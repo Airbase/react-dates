@@ -29,11 +29,33 @@ export default class MonthSelector extends React.Component {
     return shallowCompare(this, nextProps, nextState);
   }
 
+  prevMonthClick(e) {
+    const { date, onSelectMonth } = this.props;
+    e.preventDefault();
+    onSelectMonth(date, date.get('month') - 1);
+  }
+
+  nextMonthClick(e) {
+    const { date, onSelectMonth } = this.props;
+    e.preventDefault();
+    onSelectMonth(date, date.get('month') + 1);
+  }
+
+  prevYearClick(e) {
+    const { date, onSelectYear } = this.props;
+    e.preventDefault();
+    onSelectYear(date, date.get('year') - 1)
+  }
+
+  nextYearClick(e) {
+    const { date, onSelectYear } = this.props;
+    e.preventDefault();
+    onSelectYear(date, date.get('year') + 1)
+  }
+
   render() {
     const {
       date,
-      onSelectMonth,
-      onSelectYear,
       navPrev,
       navNext,
     } = this.props;
@@ -44,26 +66,26 @@ export default class MonthSelector extends React.Component {
     return (
       <div className="MonthYearSwitch">
         <div className="Month">
-          <button onClick={() => onSelectMonth(date, date.get('month') - 1)}>
+          <button onClick={this.prevMonthClick}>
             {navPrev ? navPrev : 
             <LeftArrow />
             }
           </button>
           <span className="Month--title">{currentMonth}</span>
-          <button onClick={() => onSelectMonth(date, date.get('month') + 1)}>
+          <button onClick={this.nextMonthClick}>
             {navNext ? navNext : 
             <RightArrow />
             }
           </button>
         </div>
         <div className="Year">
-          <button onClick={() => onSelectYear(date, date.get('year') - 1)}>
+          <button onClick={this.prevYearClick}>
           {navPrev ? navPrev : 
             <LeftArrow />
           }
           </button>
           <span className="Year--title">{currentYear}</span>
-          <button onClick={() => onSelectYear(date, date.get('year') + 1)}>
+          <button onClick={this.nextYearClick}>
           {navNext ? navNext : 
             <RightArrow />
           }
