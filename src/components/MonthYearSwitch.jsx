@@ -25,6 +25,15 @@ const defaultProps = {
 };
 
 export default class MonthSelector extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.prevMonthClick = this.prevMonthClick.bind(this);
+    this.nextMonthClick = this.nextMonthClick.bind(this);
+    this.prevYearClick = this.prevYearClick.bind(this);
+    this.nextYearClick = this.nextYearClick.bind(this);
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     return shallowCompare(this, nextProps, nextState);
   }
